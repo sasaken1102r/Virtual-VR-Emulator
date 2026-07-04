@@ -30,7 +30,15 @@ React UI ──WS──► Rust hub (127.0.0.1:18320) ──WS──► driver_v
                   └ future: external automation API             └ updates input components
 ```
 
-## Requirements
+## Installation
+
+Download the installer (`.msi` or `-setup.exe`) from [GitHub Releases](https://github.com/sasaken1102r/Virtual-VR-Emulator/releases) and run it. Steam + SteamVR are required.
+
+> **Note**: The installer is unsigned, so Windows SmartScreen may show a warning ("More info" → "Run anyway").
+
+After installing, register the driver and apply SteamVR settings from the app's "Setup" tab and you're ready. To build from source, see below.
+
+## Requirements (building from source)
 
 - Windows 11 + Steam + SteamVR
 - Visual Studio 2022 (C++ workload) + CMake 3.20+

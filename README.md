@@ -30,7 +30,15 @@ React UI ──WS──► Rustハブ(127.0.0.1:18320) ──WS──► driver_
                   └ 将来: 外部自動化API                        └ 入力コンポーネント更新
 ```
 
-## 必要環境
+## インストール
+
+[GitHub Releases](https://github.com/sasaken1102r/Virtual-VR-Emulator/releases) からインストーラー(`.msi` または `-setup.exe`)をダウンロードして実行。動作にはSteam + SteamVRが必要。
+
+> **Note**: インストーラーは署名されていないため、Windows SmartScreenの警告が出ることがある(「詳細情報」→「実行」で続行できる)
+
+インストール後、アプリの「セットアップ」タブでドライバー登録とSteamVR設定を行えばすぐ使える。ソースからビルドする場合は以下へ。
+
+## 必要環境(ソースからビルドする場合)
 
 - Windows 11 + Steam + SteamVR
 - Visual Studio 2022 (C++ワークロード) + CMake 3.20+
