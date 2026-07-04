@@ -1,0 +1,9 @@
+{
+	"alwaysActivate": true,
+	"name": "vvre",
+	"directory": "",
+	"resourceOnly": false,
+	"hmd_presence": [
+		"*.*"
+	]
+}

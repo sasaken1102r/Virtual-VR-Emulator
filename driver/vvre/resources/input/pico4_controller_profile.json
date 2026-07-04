@@ -1,0 +1,92 @@
+{
+  "jsonid": "input_profile",
+  "controller_type": "pico_controller",
+  "device_class": "TrackedDeviceClass_Controller",
+  "legacy_binding": "{vvre}/input/legacy_bindings_pico4_controller.json",
+  "input_bindingui_mode": "controller_handed",
+  "should_show_binding_errors": true,
+  "input_source": {
+    "/input/joystick": {
+      "type": "joystick",
+      "click": true,
+      "touch": true,
+      "binding_image_point": [43, 45],
+      "order": 1
+    },
+    "/input/trigger": {
+      "type": "trigger",
+      "value": true,
+      "click": true,
+      "touch": true,
+      "binding_image_point": [46, 66],
+      "order": 2
+    },
+    "/input/grip": {
+      "type": "trigger",
+      "value": true,
+      "touch": true,
+      "binding_image_point": [56, 86],
+      "order": 3
+    },
+    "/input/a": {
+      "type": "button",
+      "click": true,
+      "touch": true,
+      "side": "right",
+      "binding_image_point": [63, 42],
+      "order": 4
+    },
+    "/input/b": {
+      "type": "button",
+      "click": true,
+      "touch": true,
+      "side": "right",
+      "binding_image_point": [61, 26],
+      "order": 5
+    },
+    "/input/x": {
+      "type": "button",
+      "click": true,
+      "touch": true,
+      "side": "left",
+      "binding_image_point": [63, 42],
+      "order": 6
+    },
+    "/input/y": {
+      "type": "button",
+      "click": true,
+      "touch": true,
+      "side": "left",
+      "binding_image_point": [61, 26],
+      "order": 7
+    },
+    "/input/system": {
+      "type": "button",
+      "click": true,
+      "binding_image_point": [53, 110],
+      "order": 8
+    },
+    "/input/thumbrest": {
+      "type": "button",
+      "touch": true,
+      "binding_image_point": [70, 56],
+      "order": 9
+    },
+    "/output/haptic": {
+      "type": "vibration",
+      "binding_image_point": [5, 100],
+      "order": 10
+    },
+    "/pose/raw": {
+      "type": "pose",
+      "binding_image_point": [5, 60],
+      "order": 11
+    },
+    "/pose/tip": {
+      "type": "pose",
+      "binding_image_point": [5, 70],
+      "order": 12
+    }
+  },
+  "default_bindings": []
+}

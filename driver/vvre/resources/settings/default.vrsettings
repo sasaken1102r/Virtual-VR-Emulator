@@ -1,0 +1,19 @@
+{
+	"driver_vvre": {
+		"enable": true,
+		"loadPriority": 100,
+		"blocked_by_safe_mode": false,
+		"websocket_url": "ws://127.0.0.1:18320",
+		"profile": "quest3",
+		"serial_hmd": "VVRE-HMD-001",
+		"serial_left": "VVRE-CTL-L001",
+		"serial_right": "VVRE-CTL-R001"
+	},
+	"vvre_display": {
+		"window_x": 0,
+		"window_y": 0,
+		"window_width": 2160,
+		"window_height": 1200,
+		"vsync_to_photons": 0.011
+	}
+}

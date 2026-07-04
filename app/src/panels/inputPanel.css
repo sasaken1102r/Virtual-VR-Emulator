@@ -1,0 +1,71 @@
+.input-buttons {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.input-button {
+  min-width: 44px;
+}
+
+.input-button.active {
+  background: #2d6cdf;
+  border-color: #4a86ec;
+}
+
+/* 押している間だけ1.0を送るパルスボタン (トリガー/グリップ) */
+.pulse-button {
+  font-size: 0.75rem;
+  padding: 4px 2px;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.axis-row-with-pulse {
+  user-select: none;
+  grid-template-columns: 72px 1fr 60px;
+}
+
+.axis-value {
+  font-size: 0.8rem;
+  color: #9a9ab2;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* スティック/パッド: ラベルを上、操作UIを下に置く */
+.joystick-block {
+  margin-top: 8px;
+}
+
+.joystick-block > .axis-label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.joystick-pad-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.joystick-pad {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  background: #14141c;
+  border: 1px solid #2e2e40;
+  border-radius: 50%;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.joystick-dot {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #2d6cdf;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}

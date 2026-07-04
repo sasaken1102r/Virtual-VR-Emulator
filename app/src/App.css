@@ -1,0 +1,414 @@
+:root {
+  color-scheme: dark;
+  /* Noto Sans同梱。CJKは言語ごとに字形が違う(Han unification)ため、
+     lang属性に応じて優先フォントを切り替える */
+  font-family: 'Noto Sans', 'Noto Sans JP', 'Noto Sans SC', 'Noto Sans KR', sans-serif;
+  background-color: #16161e;
+  color: #e6e6ef;
+}
+
+:root:lang(zh) {
+  font-family: 'Noto Sans', 'Noto Sans SC', 'Noto Sans JP', 'Noto Sans KR', sans-serif;
+}
+
+:root:lang(ko) {
+  font-family: 'Noto Sans', 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 10px 12px 12px;
+  gap: 10px;
+}
+
+/* ---------- ヘッダー ---------- */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app-header h1 {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.status-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  cursor: help;
+}
+
+.status-dot.ok {
+  background: #35d07f;
+  box-shadow: 0 0 6px #35d07f88;
+}
+
+.status-dot.ng {
+  background: #e05666;
+  box-shadow: 0 0 6px #e0566688;
+}
+
+.header-spacer {
+  flex: 1;
+}
+
+button {
+  background: #33334a;
+  color: inherit;
+  border: 1px solid #4a4a66;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #40405c;
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.steamvr-start {
+  border-color: #2c7a4b;
+  background: #1c4630;
+}
+
+.steamvr-start:hover {
+  background: #235c3d;
+}
+
+.steamvr-stop {
+  border-color: #8a3a44;
+  background: #4a1d24;
+}
+
+.steamvr-stop:hover {
+  background: #5e2630;
+}
+
+.steamvr-error {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #f08a97;
+  text-align: right;
+}
+
+/* ---------- レイアウト ---------- */
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+}
+
+.viewport-wrap {
+  position: relative;
+  border: 1px solid #2e2e40;
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: 300px;
+}
+
+/* ビューポート左上のFPS開始ツールバー */
+.viewport-toolbar {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(16, 16, 26, 0.8);
+  border: 1px solid #2e2e40;
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+}
+
+.toolbar-label {
+  font-size: 0.85rem;
+  color: #c0c0d4;
+}
+
+.viewport-toolbar button {
+  padding: 0 10px;
+  font-size: 0.85rem;
+  /* 英語/日本語ラベル混在でも高さが揃うよう固定する */
+  height: 28px;
+  line-height: 1;
+}
+
+/* HMDボタンと「手も追従」をひとまとめにする枠 (追従はHMD主体専用) */
+.fps-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px 3px 3px;
+  border: 1px solid #3a3a52;
+  border-radius: 8px;
+  background: rgba(51, 51, 74, 0.35);
+}
+
+.follow-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: #c0c0d4;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.fps-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 14px;
+  background: rgba(10, 10, 16, 0.82);
+  border-top: 1px solid #2e2e40;
+  color: #c0c0d4;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.fps-overlay-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+}
+
+.fps-chip {
+  background: rgba(45, 108, 223, 0.25);
+  border: 1px solid rgba(74, 134, 236, 0.6);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.72rem;
+  color: #b8d0f8;
+}
+
+.fps-exit {
+  margin-left: auto;
+}
+
+.fps-keys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 16px;
+}
+
+.key-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.key-hint kbd {
+  background: #262636;
+  border: 1px solid #4a4a66;
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-size: 0.72rem;
+  font-family: Consolas, 'Courier New', monospace;
+  color: #e6e6ef;
+  min-width: 20px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.key-label {
+  font-size: 0.75rem;
+  color: #9a9ab2;
+  white-space: nowrap;
+}
+
+/* ---------- 右パネル (タブ) ---------- */
+
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.tab-bar {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 7px 4px;
+  font-size: 0.85rem;
+  background: #22222f;
+  border: 1px solid #2e2e40;
+  border-radius: 8px;
+  color: #9a9ab2;
+}
+
+.tab-button.active {
+  background: #33334a;
+  border-color: #4a86ec;
+  color: #e6e6ef;
+}
+
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  min-height: 0;
+  padding-right: 2px;
+}
+
+/* ---------- パネル共通 ---------- */
+
+.device-panel {
+  background: #1e1e2a;
+  border: 1px solid #2e2e40;
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+
+.device-panel h2 {
+  font-size: 0.95rem;
+  margin: 0 0 8px;
+}
+
+.haptic-indicator {
+  margin-left: 8px;
+}
+
+.axis-group h3 {
+  font-size: 0.78rem;
+  color: #9a9ab2;
+  margin: 10px 0 4px;
+}
+
+.axis-row {
+  display: grid;
+  grid-template-columns: 56px 1fr 76px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.axis-label {
+  font-size: 0.85rem;
+  color: #c0c0d4;
+}
+
+.axis-row input[type='range'] {
+  width: 100%;
+}
+
+.axis-row input[type='number'] {
+  width: 100%;
+  background: #14141c;
+  border: 1px solid #2e2e40;
+  color: inherit;
+  border-radius: 4px;
+  padding: 3px 6px;
+}
+
+.preset-row,
+.setup-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 0.85rem;
+}
+
+.setup-row {
+  justify-content: flex-start;
+}
+
+/* セットアップ状態のチェック (☑=OK / ☐=未達成) */
+.setup-check {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.setup-check.ok {
+  color: #35d07f;
+}
+
+.setup-check.ng {
+  color: #e05666;
+}
+
+.setup-check.unknown {
+  color: #6a6a82;
+}
+
+.preset-save {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.preset-save input {
+  flex: 1;
+  background: #14141c;
+  border: 1px solid #2e2e40;
+  color: inherit;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+.setup-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0;
+}
+
+.setup-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.setup-profile select {
+  background: #14141c;
+  border: 1px solid #2e2e40;
+  color: inherit;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+.panel-message {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  color: #9fd0ff;
+  word-break: break-all;
+}

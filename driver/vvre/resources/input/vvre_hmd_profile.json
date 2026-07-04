@@ -1,0 +1,12 @@
+{
+  "jsonid": "input_profile",
+  "controller_type": "vvre_hmd",
+  "input_bindingui_mode": "hmd",
+  "input_source": {
+    "/input/system": {
+      "type": "button",
+      "order": 1
+    }
+  },
+  "default_bindings": []
+}
